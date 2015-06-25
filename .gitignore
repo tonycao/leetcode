@@ -3,4 +3,9 @@
 *.aux
 *.idx
 *.out
+*.ind
+*.ilg
+*.fls
+*.fdb_latexmk
 *.synctex.gz
+.DS_Store
