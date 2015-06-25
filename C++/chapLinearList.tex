@@ -50,6 +50,10 @@ public:
 class Solution {
 public:
     int removeDuplicates(int A[], int n) {
+    	// distance() determin the number of increments 
+    	// between positionsaddressed by two iterators
+    	// unique() return an iterator to the element 
+    	// follows the last element note removed
         return distance(A, unique(A, A + n));
     }
 };
@@ -2044,6 +2048,64 @@ public:
 \begindot
 \item Add Binary, 见 \S \ref{sec:add-binary}
 \myenddot
+
+
+\subsection{Reverse Linked List}
+\label{sec:reverse-linked-list}
+
+
+\subsubsection{描述}
+Reverse a single linked list.
+
+Example:
+Given a linked list
+For linked list \code{1->2->3->nullptr}, return \code{3->2->1->nullptr}.
+
+
+\subsubsection{分析}
+这是一道很基本的单链表题目，考察你对单链表的理解程度。
+
+
+\subsubsection{递归版}
+\begin{Code}
+class Solution {
+    public:
+    ListNode* reverse(ListNode *head) {
+        if (head == nullptr || head->next == nullptr) return head;
+        ListNode* tail = head->next;
+        ListNode *head_of_reversed_tail = reverse(tail);
+        tail->next = head;
+        head->next = nullptr;
+        return head_of_reversed_tail;
+    }
+};
+\end{Code}
+
+
+\subsubsection{迭代版}
+\begin{Code}
+class Solution {
+public:
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = nullptr;
+        while (head) {
+            ListNode* next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+};
+\end{Code}
+
+
+\subsubsection{相关题目}
+
+\begindot
+\item Reverse Linked List II, 见 \S \ref{sec:reverse-linked-list-ii}
+\myenddot
+
 
 
 \subsection{Reverse Linked List II}
